@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ShopSidebar from '@/components/ShopSidebar';
 import ShopSort from '@/components/ShopSort';
+import { Suspense } from 'react';
 
 const categoryMap: Record<string, string> = {
     'cleaning-supplies': 'Cleaning Supplies',
@@ -71,7 +72,9 @@ export default async function CategoryPage({
             <div className="flex-grow max-w-[1400px] w-full mx-auto px-4 md:px-10 py-10 flex flex-col md:flex-row gap-10">
 
                 {/* Sidebar Filters */}
-                <ShopSidebar currentCategorySlug={categorySlug} />
+                <Suspense fallback={<div className="w-full md:w-64 flex-shrink-0" />}>
+                    <ShopSidebar currentCategorySlug={categorySlug} />
+                </Suspense>
 
                 {/* Product Grid */}
                 <main className="flex-grow flex flex-col">
@@ -80,7 +83,9 @@ export default async function CategoryPage({
                             <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900  font-display mb-2">{actualCategoryName}</h1>
                             <p className="text-slate-500 text-lg">Browse our collection of {actualCategoryName.toLowerCase()}.</p>
                         </div>
-                        <ShopSort />
+                        <Suspense fallback={<div className="h-10" />}>
+                            <ShopSort />
+                        </Suspense>
                     </div>
 
                     {filteredProducts.length > 0 ? (

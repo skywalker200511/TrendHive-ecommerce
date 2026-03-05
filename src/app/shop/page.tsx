@@ -5,6 +5,7 @@ import ProductModel from '@/models/Product';
 import Link from 'next/link';
 import ShopSidebar from '@/components/ShopSidebar';
 import ShopSort from '@/components/ShopSort';
+import { Suspense } from 'react';
 
 export default async function Shop({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
     const resolvedSearchParams = await searchParams || {};
@@ -40,7 +41,9 @@ export default async function Shop({ searchParams }: { searchParams: Promise<{ [
             <div className="flex-grow max-w-[1400px] w-full mx-auto px-4 md:px-10 py-10 flex flex-col md:flex-row gap-10">
 
                 {/* Sidebar Filters */}
-                <ShopSidebar currentCategorySlug="all" />
+                <Suspense fallback={<div className="w-full md:w-64 flex-shrink-0" />}>
+                    <ShopSidebar currentCategorySlug="all" />
+                </Suspense>
 
                 {/* Product Grid */}
                 <main className="flex-grow flex flex-col">
@@ -49,7 +52,9 @@ export default async function Shop({ searchParams }: { searchParams: Promise<{ [
                             <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900  font-display mb-2">Household Essentials</h1>
                             <p className="text-slate-500 text-lg">Fresh, clean, and friendly products for your everyday home needs.</p>
                         </div>
-                        <ShopSort />
+                        <Suspense fallback={<div className="h-10" />}>
+                            <ShopSort />
+                        </Suspense>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
