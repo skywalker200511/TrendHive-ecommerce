@@ -12,7 +12,25 @@ export default function Header() {
                 </Link>
                 <nav className="hidden md:flex items-center gap-9">
                     <Link className="text-slate-700  hover:text-primary transition-colors text-sm font-medium leading-normal" href="/">Home</Link>
-                    <Link className="text-slate-700  hover:text-primary transition-colors text-sm font-medium leading-normal" href="/shop">Shop</Link>
+
+                    {/* Shop Dropdown */}
+                    <div className="relative group py-2">
+                        <Link className="text-slate-700 hover:text-primary transition-colors text-sm font-medium leading-normal flex items-center gap-1" href="/shop">
+                            Shop
+                            <span className="material-symbols-outlined text-[16px] transition-transform group-hover:rotate-180">expand_more</span>
+                        </Link>
+                        {/* Dropdown Menu */}
+                        <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top left scale-95 group-hover:scale-100 z-50">
+                            <div className="w-56 bg-white border border-slate-100 rounded-2xl shadow-xl p-2 flex flex-col gap-1 relative overflow-hidden">
+                                <Link href="/shop" className="px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary rounded-xl transition-colors font-medium">All Essentials</Link>
+                                <Link href="/shop/cleaning-supplies" className="px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary rounded-xl transition-colors font-medium">Cleaning Supplies</Link>
+                                <Link href="/shop/kitchen-dining" className="px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary rounded-xl transition-colors font-medium">Kitchen & Dining</Link>
+                                <Link href="/shop/bath-body" className="px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary rounded-xl transition-colors font-medium">Bath & Body</Link>
+                                <Link href="/shop/storage-org" className="px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary rounded-xl transition-colors font-medium">Storage & Org</Link>
+                            </div>
+                        </div>
+                    </div>
+
                     <Link className="text-slate-700  hover:text-primary transition-colors text-sm font-medium leading-normal" href="/contact">Contact</Link>
                 </nav>
             </div>

@@ -1,9 +1,38 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { products } from '@/data/products';
+import connectToDatabase from '@/lib/mongodb';
+import ProductModel from '@/models/Product';
 import Link from 'next/link';
+import ShopSidebar from '@/components/ShopSidebar';
+import ShopSort from '@/components/ShopSort';
 
-export default function Shop() {
+export default async function Shop({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
+    const resolvedSearchParams = await searchParams || {};
+    const maxPrice = resolvedSearchParams.maxPrice ? Number(resolvedSearchParams.maxPrice) : null;
+    const sortParam = resolvedSearchParams.sort as string || 'featured';
+
+    await connectToDatabase();
+
+    // Query builder
+    const query: any = {};
+    if (maxPrice && maxPrice < 50) {
+        query.price = { $lte: maxPrice };
+    }
+
+    // Sort builder
+    let sortObj: any = { isBestseller: -1, createdAt: -1 }; // featured default
+    if (sortParam === 'price-asc') sortObj = { price: 1 };
+    if (sortParam === 'price-desc') sortObj = { price: -1 };
+    if (sortParam === 'newest') sortObj = { createdAt: -1 };
+
+    const productsDocs = await ProductModel.find(query).sort(sortObj).lean();
+
+    // Map _id to string for React serialization
+    const products = productsDocs.map(doc => ({
+        ...doc,
+        _id: doc._id?.toString(),
+    }));
+
     return (
         <>
             <Header />
@@ -11,37 +40,7 @@ export default function Shop() {
             <div className="flex-grow max-w-[1400px] w-full mx-auto px-4 md:px-10 py-10 flex flex-col md:flex-row gap-10">
 
                 {/* Sidebar Filters */}
-                <aside className="w-full md:w-64 flex-shrink-0">
-                    <div className="sticky top-28 space-y-8">
-                        <div>
-                            <h3 className="font-bold text-lg mb-4 text-slate-900 ">Categories</h3>
-                            <ul className="space-y-3">
-                                {['All Essentials', 'Cleaning Supplies', 'Kitchen & Dining', 'Bath & Body', 'Storage & Org'].map((cat, i) => (
-                                    <li key={cat}>
-                                        <label className="flex items-center gap-3 cursor-pointer group">
-                                            <input type="radio" name="category" defaultChecked={i === 0} className="form-radio text-action border-slate-300 focus:ring-action w-5 h-5 cursor-pointer" />
-                                            <span className="text-slate-700  group-hover:text-slate-900 transition-colors">{cat}</span>
-                                        </label>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h3 className="font-bold text-lg mb-4 text-slate-900 ">Price Range</h3>
-                            <div className="px-2">
-                                <div className="relative w-full h-1 bg-slate-200 rounded-full mb-4">
-                                    <div className="absolute inset-y-0 left-0 w-1/2 bg-action rounded-full"></div>
-                                    <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 bg-action rounded-full shadow-sm"></div>
-                                </div>
-                                <div className="flex justify-between text-sm text-slate-500">
-                                    <span>$0</span>
-                                    <span>$50+</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </aside>
+                <ShopSidebar currentCategorySlug="all" />
 
                 {/* Product Grid */}
                 <main className="flex-grow flex flex-col">
@@ -50,20 +49,7 @@ export default function Shop() {
                             <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900  font-display mb-2">Household Essentials</h1>
                             <p className="text-slate-500 text-lg">Fresh, clean, and friendly products for your everyday home needs.</p>
                         </div>
-                        <div className="flex items-center gap-3">
-                            <span className="text-sm text-slate-500 font-medium">Sort by:</span>
-                            <div className="relative">
-                                <select className="appearance-none bg-white border border-slate-200 rounded-lg py-2 pl-4 pr-10 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-action/20 focus:border-action cursor-pointer">
-                                    <option>Featured</option>
-                                    <option>Price: Low to High</option>
-                                    <option>Price: High to Low</option>
-                                    <option>Newest Arrivals</option>
-                                </select>
-                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500">
-                                    <span className="material-symbols-outlined text-lg">expand_more</span>
-                                </div>
-                            </div>
-                        </div>
+                        <ShopSort />
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
