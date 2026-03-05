@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Friendly Household - Contact Us</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet" />
+    <!-- Also importing the Plus Jakarta Sans from the original contact page for the form elements -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;900&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ee5f2b",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221510",
+                    },
+                    fontFamily: {
+                        "display": ["Noto Serif", "serif"],
+                        "sans": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen overflow-x-hidden selection:bg-primary/30 flex flex-col">
+
+    <!-- Unified Header -->
+    <header
+        class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/10 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm px-6 md:px-10 py-4 shadow-sm transition-all duration-300">
+        <div class="flex items-center gap-8">
+            <a href="index.html" class="flex items-center gap-4 text-primary group">
+                <div class="size-6 transform group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-2xl">home_app_logo</span>
+                </div>
+                <h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-[-0.015em]">
+                    Friendly Household</h2>
+            </a>
+            <nav class="hidden md:flex items-center gap-9">
+                <a class="text-slate-700 dark:text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal"
+                    href="index.html">Home</a>
+                <a class="text-slate-700 dark:text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal"
+                    href="shop.html">Shop</a>
+                <a class="text-primary text-sm font-bold leading-normal" href="contact.html">Contact</a>
+            </nav>
+        </div>
+        <div class="flex items-center gap-4">
+            <label class="hidden lg:flex flex-col min-w-40 !h-10 max-w-64 relative group">
+                <div
+                    class="flex w-full flex-1 items-stretch rounded-full h-full bg-primary/5 dark:bg-primary/10 border border-transparent group-focus-within:border-primary/30 transition-colors">
+                    <div class="text-slate-500 flex items-center justify-center pl-4 rounded-l-full">
+                        <span class="material-symbols-outlined text-xl">search</span>
+                    </div>
+                    <input
+                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-full text-slate-900 dark:text-slate-100 focus:outline-0 focus:ring-0 border-none bg-transparent h-full placeholder:text-slate-500 px-4 pl-2 text-sm font-normal leading-normal"
+                        placeholder="Search essentials..." value="" />
+                </div>
+            </label>
+            <div class="flex gap-2">
+                <a href="shop.html"
+                    class="flex size-10 items-center justify-center rounded-full bg-primary/5 dark:bg-primary/10 text-slate-700 dark:text-slate-300 hover:bg-primary hover:text-white transition-all transform hover:scale-105"
+                    aria-label="Cart">
+                    <span class="material-symbols-outlined text-xl">shopping_cart</span>
+                </a>
+                <a href="login.html"
+                    class="flex size-10 items-center justify-center rounded-full bg-primary/5 dark:bg-primary/10 text-slate-700 dark:text-slate-300 hover:bg-primary hover:text-white transition-all transform hover:scale-105"
+                    aria-label="Login">
+                    <span class="material-symbols-outlined text-xl">person</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content (Contact Form imported from friendly_contact_page) -->
+    <main class="flex-grow flex flex-col items-center justify-center py-20 px-4 font-sans relative overflow-hidden">
+
+        <!-- Decorative blobs backing the form -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-[100px] pointer-events-none">
+        </div>
+
+        <div
+            class="max-w-[700px] w-full bg-white dark:bg-slate-900/40 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none border border-black/5 dark:border-white/10 p-8 md:p-14 relative z-10 backdrop-blur-sm">
+            <div class="text-center mb-12">
+                <div
+                    class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-6">
+                    <span class="material-symbols-outlined text-3xl">mail</span>
+                </div>
+                <h2
+                    class="font-display text-4xl md:text-5xl font-black tracking-tight mb-4 text-slate-900 dark:text-white">
+                    Get in touch</h2>
+                <p class="text-slate-500 dark:text-slate-400 text-lg max-w-md mx-auto">We'd love to hear from you. Fill
+                    out the form below and we'll get back to you within 24 hours.</p>
+            </div>
+
+            <form class="space-y-6 flex flex-col">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <label class="flex flex-col gap-2 group">
+                        <span class="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1">First Name</span>
+                        <input
+                            class="form-input rounded-2xl border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-black/20 focus:border-primary focus:ring-primary h-14 px-5 text-base w-full placeholder:text-slate-400 transition-all group-hover:border-primary/30 shadow-sm"
+                            placeholder="Jane" type="text" />
+                    </label>
+                    <label class="flex flex-col gap-2 group">
+                        <span class="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1">Last Name</span>
+                        <input
+                            class="form-input rounded-2xl border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-black/20 focus:border-primary focus:ring-primary h-14 px-5 text-base w-full placeholder:text-slate-400 transition-all group-hover:border-primary/30 shadow-sm"
+                            placeholder="Doe" type="text" />
+                    </label>
+                </div>
+                <label class="flex flex-col gap-2 group">
+                    <span class="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1">Email Address</span>
+                    <input
+                        class="form-input rounded-2xl border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-black/20 focus:border-primary focus:ring-primary h-14 px-5 text-base w-full placeholder:text-slate-400 transition-all group-hover:border-primary/30 shadow-sm"
+                        placeholder="jane@example.com" type="email" />
+                </label>
+                <label class="flex flex-col gap-2 group">
+                    <span class="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1">Message</span>
+                    <textarea
+                        class="form-textarea rounded-2xl border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-black/20 focus:border-primary focus:ring-primary min-h-[160px] p-5 text-base w-full resize-y placeholder:text-slate-400 transition-all group-hover:border-primary/30 shadow-sm"
+                        placeholder="How can we help you today?"></textarea>
+                </label>
+
+                <div class="pt-6">
+                    <button
+                        class="bg-primary hover:bg-primary/90 text-white font-bold py-4 px-10 rounded-full w-full transition-all shadow-[0_8px_20px_rgb(238,95,43,0.25)] hover:shadow-[0_8px_25px_rgb(238,95,43,0.4)] hover:-translate-y-0.5 text-lg flex items-center justify-center gap-2"
+                        type="button">
+                        Send Message
+                        <span class="material-symbols-outlined text-xl">send</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Unified Footer -->
+    <footer class="mt-auto border-t border-solid border-primary/10 bg-white dark:bg-black/20 py-16 px-6 md:px-10">
+        <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between gap-12">
+            <div class="flex flex-col gap-6 max-w-sm">
+                <a href="index.html" class="flex items-center gap-2 text-primary">
+                    <span class="material-symbols-outlined text-3xl">home_app_logo</span>
+                    <span class="text-slate-900 dark:text-slate-100 font-black text-2xl tracking-tight">Friendly
+                        Household</span>
+                </a>
+                <p class="text-base text-slate-500 dark:text-slate-400 leading-relaxed">
+                    Making everyday chores a little brighter with sustainably sourced, beautiful essentials crafted for
+                    the modern home.
+                </p>
+            </div>
+            <div class="flex flex-wrap gap-12 sm:gap-24">
+                <div class="flex flex-col gap-4">
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white">Shop</h4>
+                    <a class="text-sm font-medium text-slate-500 hover:text-primary transition-colors"
+                        href="shop.html">Cleaning</a>
+                    <a class="text-sm font-medium text-slate-500 hover:text-primary transition-colors"
+                        href="shop.html">Kitchen</a>
+                    <a class="text-sm font-medium text-slate-500 hover:text-primary transition-colors"
+                        href="shop.html">Bath</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white">Company</h4>
+                    <a class="text-sm font-medium text-slate-500 hover:text-primary transition-colors" href="#">Our
+                        Story</a>
+                    <a class="text-sm font-medium text-slate-500 hover:text-primary transition-colors"
+                        href="#">Sustainability</a>
+                    <a class="text-sm font-medium text-slate-500 hover:text-primary transition-colors"
+                        href="contact.html">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div
+            class="max-w-[1200px] mx-auto mt-12 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-slate-400">© 2024 Friendly Household. Built with Tailwind CSS.</p>
+            <div class="flex gap-4">
+                <a href="#" class="text-slate-400 hover:text-primary transition-colors"><span
+                        class="material-symbols-outlined">share</span></a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
